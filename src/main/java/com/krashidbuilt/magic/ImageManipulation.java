@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by benkauffman on 10/1/16.
@@ -25,8 +24,8 @@ public class ImageManipulation {
 
     private static Logger logger = LogManager.getLogger();
 
+    private File watermarkFile = new File(getClass().getClassLoader().getResource("watermark.tif").getFile());
 
-    private File watermarkFile = new File("/Users/benkauffman/development/java/h2o-rockingham/src/main/resources/watermark.tif");
     private List<Coordinate> watermarkCoordinates;
 
     private BufferedImage image;
@@ -49,7 +48,7 @@ public class ImageManipulation {
 
         image = ImageIO.read(imageFile);
 
-        logger.debug("LOOPING THROUGH {} WATERMARK COORDINATES", watermarkCoordinates.size());
+//        logger.debug("LOOPING THROUGH {} WATERMARK COORDINATES", watermarkCoordinates.size());
         for(Coordinate coordinate : watermarkCoordinates){
             if(image.getWidth() < coordinate.getX() || image.getHeight() < coordinate.getY()){
                 throw new Exception("WATERMARK COORDINATE IS OUTSIDE IMAGE RANGE");
@@ -65,8 +64,6 @@ public class ImageManipulation {
 
         TIFFImageWriterSpi tiffspi = new TIFFImageWriterSpi();
         ImageWriter writer = tiffspi.createWriterInstance();
-        //Iterator<ImageWriter> iter =  ImageIO.getImageWritersByFormatName("TIFF");
-        //ImageWriter writer = iter.next();
 
         ImageWriteParam param = writer.getDefaultWriteParam();
         param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
