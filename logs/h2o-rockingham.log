@@ -1,0 +1,104 @@
+[2016-10-01 10:06:27.056] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.095] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.097] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.101] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.103] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.108] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.133] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.136] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.149] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.159] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.161] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.163] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.164] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.168] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.170] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.172] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.174] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.179] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.202] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.203] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.204] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.205] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.206] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.212] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.215] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
+[2016-10-01 10:06:27.218] [main] [ERROR] [com.krashidbuilt.Main36:45] - UNABLE TO LOAD IMAGE
+java.lang.NullPointerException
+	at com.krashidbuilt.magic.ImageManipulation.printToConsole(ImageManipulation.java:26) ~[main/:?]
+	at com.krashidbuilt.Main.main(Main.java:43) [main/:?]
