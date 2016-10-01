@@ -1,6 +1,7 @@
 package com.krashidbuilt;
 
 import com.krashidbuilt.info.General;
+import com.krashidbuilt.magic.ImageManipulation;
 import com.krashidbuilt.magic.Pdf2TiffConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,9 +17,9 @@ public class Main {
 
     private static Logger logger = LogManager.getLogger();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
-        String[] arg = new String[]{"/Users/benkauffman/development/java/h2o-rockingham/images/pdf"};
+        String[] arg = new String[]{"/Users/benkauffman/development/java/h2o-rockingham/images/tiff"};
         args = arg;
 
         General general = null;
@@ -31,6 +32,18 @@ public class Main {
         File source = general.getSourceDir(args);
         logger.debug("Source directory is set to {}", source);
 
+        File[] images = general.getFilesInSource("tiff");
+        if(images.length >= 1){
+            ImageManipulation im = new ImageManipulation();
+            for(File image : images){
+                im.removeWaterMark(image);
+            }
+        }
+
+    }
+
+    private void convert(General general) throws IOException {
+
         File[] pdfs = general.getFilesInSource("pdf");
         logger.debug("{} PDFs found in source matching the filter criteria", pdfs.length);
 
@@ -38,9 +51,5 @@ public class Main {
             logger.debug("converting pdf {}", pdf.getName());
             Pdf2TiffConverter.savePdfAsTiff(pdf);
         }
-
-
-
-
     }
 }
