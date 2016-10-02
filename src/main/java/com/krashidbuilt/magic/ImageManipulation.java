@@ -30,9 +30,13 @@ public class ImageManipulation {
 
     private BufferedImage image;
     private int white;
+    private int red;
+    private int black;
 
     public ImageManipulation() throws IOException {
-         white = new Color(255, 255, 255).getRGB();
+        black = new Color(0, 0, 0).getRGB();
+        white = new Color(255, 255, 255).getRGB();
+        red = new Color(255, 0, 0).getRGB();
 
         //load the watermark and generate the coordinates map
         image = ImageIO.read(watermarkFile);
@@ -50,14 +54,11 @@ public class ImageManipulation {
 
 //        logger.debug("LOOPING THROUGH {} WATERMARK COORDINATES", watermarkCoordinates.size());
         for(Coordinate coordinate : watermarkCoordinates){
-            if(image.getWidth() < coordinate.getX() || image.getHeight() < coordinate.getY()){
-                throw new Exception("WATERMARK COORDINATE IS OUTSIDE IMAGE RANGE");
+            if(isBlack(coordinate)){
+                cleanPixel(coordinate);
             }
-
-            cleanPixel(coordinate);
         }
 
-        String output = "clean - " + imageFile.getName();
 
 //        File outputFile =  new File(output);
 //        ImageIO.write(image, "TIFF", outputFile);
@@ -72,7 +73,13 @@ public class ImageManipulation {
         param.setCompressionQuality(0.5f);
 
 
-        String absoluteOutputFile = imageFile.getAbsolutePath().replace(imageFile.getName(), output);
+        File outputDir = new File(imageFile.getAbsolutePath().replace(imageFile.getName(), "dry"));
+        if(!outputDir.exists()){
+            outputDir.mkdir();
+        }
+
+        logger.debug(outputDir.getAbsolutePath());
+        String absoluteOutputFile = outputDir.getPath() + File.separator + imageFile.getName();
 
         File fOutputFile = new File(absoluteOutputFile);
         ImageOutputStream ios = ImageIO.createImageOutputStream(fOutputFile);
@@ -83,17 +90,38 @@ public class ImageManipulation {
 
 
     private void cleanPixel(Coordinate c){
-        int clr   = image.getRGB(c.getX(),c.getY());
-        int red   = (clr & 0x00ff0000) >> 16;
-        int green = (clr & 0x0000ff00) >> 8;
-        int blue  =  clr & 0x000000ff;
-
-        if(red + green + blue == 0){
-//            logger.debug("CLEAN PIXEL AT ({},{})", c.getX(), c.getY());
-            image.setRGB(c.getX(), c.getY(), white);
-        }
+        image.setRGB(c.getX(), c.getY(), white);
 
     }
+
+
+    private boolean isBlack(Coordinate c){
+
+        if(image.getWidth() < c.getX() || image.getHeight() < c.getY()){
+            //out of bounds
+            return false;
+        }
+
+        return image.getRGB(c.getX(), c.getY()) == black;
+    }
+
+//    private boolean smartDelete(Coordinate c){
+//        //this watermark is only ever 4 pixels wide or 4 pixels tall
+//        //get the pixel and do some exploratory checking
+//        int xGridCount = 3;
+//        int yGridCount = 3;
+//
+//        int startPosition = c.getX() - 2 * xGridCount;
+//        for(int i = 1; i <= xGridCount * 2; i++){
+//
+//        }
+//
+//
+//        int[][] aMatrix = new int[5][];
+//        int[] xGrid = new int[5];
+//
+//
+//    }
 
     public void generateCoordMap(){
         logger.debug("READING WATERMARK AND SETTING COORDINATES");
