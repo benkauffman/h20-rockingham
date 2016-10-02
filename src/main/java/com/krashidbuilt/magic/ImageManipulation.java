@@ -55,7 +55,7 @@ public class ImageManipulation {
 //        logger.debug("LOOPING THROUGH {} WATERMARK COORDINATES", watermarkCoordinates.size());
         for(Coordinate coordinate : watermarkCoordinates){
             if(isBlack(coordinate)){
-                cleanPixel(coordinate);
+                smartDelete(coordinate);
             }
         }
 
@@ -78,19 +78,13 @@ public class ImageManipulation {
             outputDir.mkdir();
         }
 
-        logger.debug(outputDir.getAbsolutePath());
+//        logger.debug(outputDir.getAbsolutePath());
         String absoluteOutputFile = outputDir.getPath() + File.separator + imageFile.getName();
 
         File fOutputFile = new File(absoluteOutputFile);
         ImageOutputStream ios = ImageIO.createImageOutputStream(fOutputFile);
         writer.setOutput(ios);
         writer.write(null, new IIOImage(image, null, null), param);
-
-    }
-
-
-    private void cleanPixel(Coordinate c){
-        image.setRGB(c.getX(), c.getY(), white);
 
     }
 
@@ -105,23 +99,48 @@ public class ImageManipulation {
         return image.getRGB(c.getX(), c.getY()) == black;
     }
 
-//    private boolean smartDelete(Coordinate c){
-//        //this watermark is only ever 4 pixels wide or 4 pixels tall
-//        //get the pixel and do some exploratory checking
-//        int xGridCount = 3;
-//        int yGridCount = 3;
-//
-//        int startPosition = c.getX() - 2 * xGridCount;
-//        for(int i = 1; i <= xGridCount * 2; i++){
-//
-//        }
-//
-//
-//        int[][] aMatrix = new int[5][];
-//        int[] xGrid = new int[5];
-//
-//
-//    }
+    private void smartDelete(Coordinate c){
+        //this watermark is only ever 4 pixels wide or 4 pixels tall
+        //get the pixel and do some exploratory checking
+        int xGridCount = 4;
+        int yGridCount = 4;
+
+        int blackCount = 0;
+        int startPosition = c.getX() - xGridCount / 2;
+        for(int i = 1; i <= xGridCount * 2; i++){
+
+            if(startPosition == c.getX()){
+                //this is the origin, skip it
+                startPosition++;
+            }
+            if(isBlack(new Coordinate(startPosition++, c.getY()))){
+                blackCount++;
+            }
+        }
+
+
+        startPosition = c.getY() - yGridCount / 2;
+        for(int i = 1; i <= yGridCount * 2; i++){
+
+            if(startPosition == c.getY()){
+                //this is the origin, skip it
+                startPosition++;
+            }
+            if(isBlack(new Coordinate(c.getX(), startPosition++))){
+                blackCount++;
+            }
+        }
+
+
+        float percentage = (blackCount * 100 / (xGridCount * yGridCount));
+
+        if(percentage <= 75){
+            image.setRGB(c.getX(), c.getY(), white);
+//            logger.debug("({} / ({} * {})) * 100 = {} DELETE", blackCount, xGridCount, yGridCount, percentage);
+//        }else{
+//            logger.debug("({} / ({} * {})) * 100 = {}", blackCount, xGridCount, yGridCount, percentage);
+        }
+    }
 
     public void generateCoordMap(){
         logger.debug("READING WATERMARK AND SETTING COORDINATES");
