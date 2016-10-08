@@ -23,7 +23,7 @@ public class ImageManipulation {
 
     private static Logger logger = LogManager.getLogger();
 
-    private File watermarkFile = new File(getClass().getClassLoader().getResource("watermark.tif").getFile());
+    private File watermarkFile;
 
     private List<Coordinate> watermarkCoordinates;
 
@@ -32,7 +32,20 @@ public class ImageManipulation {
     private int red;
     private int black;
 
-    public ImageManipulation() throws IOException {
+    public ImageManipulation(String[] args) throws Exception {
+        try{
+            watermarkFile = new File(getClass().getClassLoader().getResource("watermark.tif").getFile());
+
+            if(args.length >= 1){
+                watermarkFile = new File(args[0]);
+                logger.debug("WATERMARK SOURCE FILE IS {}", watermarkFile.getAbsolutePath());
+            }
+
+        }catch (Exception ex){
+            logger.error("UNABLE TO LOAD WATERMARK IMAGE", ex);
+            throw new Exception("UNABLE TO LOAD WATERMARK IMAGE");
+        }
+
         black = new Color(0, 0, 0).getRGB();
         white = new Color(255, 255, 255).getRGB();
         red = new Color(255, 0, 0).getRGB();
