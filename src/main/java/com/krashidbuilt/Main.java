@@ -19,8 +19,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        String[] arg = new String[]{"/Users/benkauffman/development/java/h2o-rockingham/images/tiff"};
-        args = arg;
+//        String[] arg = new String[]{"/Users/benkauffman/development/java/h2o-rockingham/images/tiff"};
+//        args = arg;
 
         General general = null;
         try {
