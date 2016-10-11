@@ -29,7 +29,6 @@ public class ImageManipulation {
 
     private BufferedImage image;
     private int white;
-    private int red;
     private int black;
 
     public ImageManipulation(String[] args) throws Exception {
@@ -48,7 +47,6 @@ public class ImageManipulation {
 
         black = new Color(0, 0, 0).getRGB();
         white = new Color(255, 255, 255).getRGB();
-        red = new Color(255, 0, 0).getRGB();
 
         //load the watermark and generate the coordinates map
         image = ImageIO.read(watermarkFile);
@@ -83,11 +81,7 @@ public class ImageManipulation {
                 }
             }
 
-            if(pageCount >= 2){
-                save(imageFile, imageFile.getName().replace(".tiff", "." + String.format("%03d", i + 1)));
-            }else{
-                save(imageFile, null);
-            }
+            save(imageFile, imageFile.getName().replace(".tiff", "." + String.format("%04d", i + 1)));
 
         }
 
@@ -111,12 +105,7 @@ public class ImageManipulation {
             outputDir.mkdir();
         }
 
-        String absoluteOutputFile;
-        if(rename != null && !rename.isEmpty()){
-            absoluteOutputFile = outputDir.getPath() + File.separator + rename;
-        }else{
-            absoluteOutputFile = outputDir.getPath() + File.separator + imageFile.getName();
-        }
+        String absoluteOutputFile = outputDir.getPath() + File.separator + rename;
 
 
         File fOutputFile = new File(absoluteOutputFile);
@@ -137,7 +126,7 @@ public class ImageManipulation {
 
     private void smartDelete(Coordinate c){
         //this watermark is only ever 4 pixels wide or 4 pixels tall
-        //get the pixel and do some exploratory checking
+        //get the pixel and do some exploratory checks to make sure we should delete this pixel
         int xGridCount = 4;
         int yGridCount = 4;
 
@@ -172,9 +161,6 @@ public class ImageManipulation {
 
         if(percentage <= 75){
             image.setRGB(c.getX(), c.getY(), white);
-//            logger.debug("({} / ({} * {})) * 100 = {} DELETE", blackCount, xGridCount, yGridCount, percentage);
-//        }else{
-//            logger.debug("({} / ({} * {})) * 100 = {}", blackCount, xGridCount, yGridCount, percentage);
         }
     }
 
@@ -189,8 +175,6 @@ public class ImageManipulation {
                 int blue  =  clr & 0x000000ff;
 
                 if(red + green + blue == 0){
-                    //(X,Y) = (R,G,B)
-//                    logger.debug("WATERMARK PIXEL ({},{}) = ({},{},{}) ", x, y, red, green, blue);
                     watermarkCoordinates.add(new Coordinate(x,y));
                 }
 
