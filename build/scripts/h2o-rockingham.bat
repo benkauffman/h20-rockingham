@@ -8,13 +8,13 @@
 @rem Set local scope for the variables with windows NT shell
 if "%OS%"=="Windows_NT" setlocal
 
+@rem Add default JVM options here. You can also use JAVA_OPTS and H_O_ROCKINGHAM_OPTS to pass JVM options to this script.
+set DEFAULT_JVM_OPTS=
+
 set DIRNAME=%~dp0
 if "%DIRNAME%" == "" set DIRNAME=.
 set APP_BASE_NAME=%~n0
 set APP_HOME=%DIRNAME%..
-
-@rem Add default JVM options here. You can also use JAVA_OPTS and H2O_ROCKINGHAM_OPTS to pass JVM options to this script.
-set DEFAULT_JVM_OPTS=
 
 @rem Find java.exe
 if defined JAVA_HOME goto findJavaFromJavaHome
@@ -46,7 +46,7 @@ echo location of your Java installation.
 goto fail
 
 :init
-@rem Get command-line arguments, handling Windows variants
+@rem Get command-line arguments, handling Windowz variants
 
 if not "%OS%" == "Windows_NT" goto win9xME_args
 if "%@eval[2+2]" == "4" goto 4NT_args
@@ -72,16 +72,16 @@ set CMD_LINE_ARGS=%$
 set CLASSPATH=%APP_HOME%\lib\h2o-rockingham-1.0-SNAPSHOT.jar;%APP_HOME%\lib\icafe-1.1-SNAPSHOT.jar;%APP_HOME%\lib\pdfbox-1.8.12.jar;%APP_HOME%\lib\log4j-api-2.1.jar;%APP_HOME%\lib\log4j-core-2.1.jar;%APP_HOME%\lib\jai_imageio-1.1.jar;%APP_HOME%\lib\slf4j-api-1.7.12.jar;%APP_HOME%\lib\fontbox-1.8.12.jar;%APP_HOME%\lib\jempbox-1.8.12.jar;%APP_HOME%\lib\commons-logging-1.1.1.jar
 
 @rem Execute h2o-rockingham
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %H2O_ROCKINGHAM_OPTS%  -classpath "%CLASSPATH%" com.krashidbuilt.Main %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %H_O_ROCKINGHAM_OPTS%  -classpath "%CLASSPATH%" com.krashidbuilt.Main %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell
 if "%ERRORLEVEL%"=="0" goto mainEnd
 
 :fail
-rem Set variable H2O_ROCKINGHAM_EXIT_CONSOLE if you need the _script_ return code instead of
+rem Set variable H_O_ROCKINGHAM_EXIT_CONSOLE if you need the _script_ return code instead of
 rem the _cmd.exe /c_ return code!
-if  not "" == "%H2O_ROCKINGHAM_EXIT_CONSOLE%" exit 1
+if  not "" == "%H_O_ROCKINGHAM_EXIT_CONSOLE%" exit 1
 exit /b 1
 
 :mainEnd

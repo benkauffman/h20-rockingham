@@ -19,9 +19,10 @@ public class General {
     }
 
     public File getSourceDir(String[] args){
-        if(args.length >= 1){
-            source = new File(args[0]);
+        if(args.length == 2){
+            source = new File(args[1]);
         }
+
         return source;
     }
 

@@ -19,8 +19,13 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        String[] arg = new String[]{"/Users/benkauffman/development/java/h2o-rockingham/images/tiff"};
-        args = arg;
+        if(args.length < 1){
+            throw new Exception("You must at least specifiy the watermark template file in the arguement.");
+        }
+
+//        String[] arg = new String[]{"/Users/benkauffman/development/java/h2o-rockingham/images/tiff"};
+        args = new String[]{"C:\\Users\\hackur\\Desktop\\watermark.tif",
+                "C:\\Users\\hackur\\.IntelliJIdea15\\IdeaProjects\\h2o-rockingham\\images\\tiff"};
 
         General general = null;
         try {
@@ -34,7 +39,7 @@ public class Main {
 
         File[] images = general.getFilesInSource("tiff");
         if(images.length >= 1){
-            ImageManipulation im = new ImageManipulation();
+            ImageManipulation im = new ImageManipulation(args);
             for(File image : images){
                 im.removeWaterMark(image);
             }
