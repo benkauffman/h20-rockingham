@@ -5,16 +5,15 @@ import com.sun.media.imageioimpl.plugins.tiff.TIFFImageWriterSpi;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
+import javax.imageio.*;
+import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ public class ImageManipulation {
 
     private static Logger logger = LogManager.getLogger();
 
-    private File watermarkFile = new File(getClass().getClassLoader().getResource("watermark.tif").getFile());
+    private File watermarkFile;
 
     private List<Coordinate> watermarkCoordinates;
 
@@ -33,7 +32,20 @@ public class ImageManipulation {
     private int red;
     private int black;
 
-    public ImageManipulation() throws IOException {
+    public ImageManipulation(String[] args) throws Exception {
+        try{
+            watermarkFile = new File(getClass().getClassLoader().getResource("watermark.tif").getFile());
+
+            if(args.length >= 1){
+                watermarkFile = new File(args[0]);
+                logger.debug("WATERMARK SOURCE FILE IS {}", watermarkFile.getAbsolutePath());
+            }
+
+        }catch (Exception ex){
+            logger.error("UNABLE TO LOAD WATERMARK IMAGE", ex);
+            throw new Exception("UNABLE TO LOAD WATERMARK IMAGE");
+        }
+
         black = new Color(0, 0, 0).getRGB();
         white = new Color(255, 255, 255).getRGB();
         red = new Color(255, 0, 0).getRGB();
@@ -50,19 +62,40 @@ public class ImageManipulation {
 
         logger.debug("REMOVE WATERMARK FROM {}", imageFile.getName());
 
+
+        ImageInputStream is = ImageIO.createImageInputStream(imageFile);
+        Iterator<ImageReader> iterator = ImageIO.getImageReaders(is);
+        ImageReader reader = (ImageReader) iterator.next();
+        iterator = null;
+        reader.setInput(is);
+
         image = ImageIO.read(imageFile);
 
-//        logger.debug("LOOPING THROUGH {} WATERMARK COORDINATES", watermarkCoordinates.size());
-        for(Coordinate coordinate : watermarkCoordinates){
-            if(isBlack(coordinate)){
-                smartDelete(coordinate);
+
+        int pageCount = reader.getNumImages(true);
+
+        for(int i = 0; i <= pageCount - 1; i++){
+            image = reader.read(i);
+
+            for(Coordinate coordinate : watermarkCoordinates){
+                if(isBlack(coordinate)){
+                    smartDelete(coordinate);
+                }
             }
+
+            if(pageCount >= 2){
+                save(imageFile, imageFile.getName().replace(".tiff", "." + String.format("%03d", i + 1)));
+            }else{
+                save(imageFile, null);
+            }
+
         }
 
 
-//        File outputFile =  new File(output);
-//        ImageIO.write(image, "TIFF", outputFile);
+    }
 
+
+    private void save(File imageFile, String rename) throws IOException {
         TIFFImageWriterSpi tiffspi = new TIFFImageWriterSpi();
         ImageWriter writer = tiffspi.createWriterInstance();
 
@@ -78,16 +111,19 @@ public class ImageManipulation {
             outputDir.mkdir();
         }
 
-//        logger.debug(outputDir.getAbsolutePath());
-        String absoluteOutputFile = outputDir.getPath() + File.separator + imageFile.getName();
+        String absoluteOutputFile;
+        if(rename != null && !rename.isEmpty()){
+            absoluteOutputFile = outputDir.getPath() + File.separator + rename;
+        }else{
+            absoluteOutputFile = outputDir.getPath() + File.separator + imageFile.getName();
+        }
+
 
         File fOutputFile = new File(absoluteOutputFile);
         ImageOutputStream ios = ImageIO.createImageOutputStream(fOutputFile);
         writer.setOutput(ios);
         writer.write(null, new IIOImage(image, null, null), param);
-
     }
-
 
     private boolean isBlack(Coordinate c){
 
