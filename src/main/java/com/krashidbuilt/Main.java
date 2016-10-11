@@ -42,7 +42,7 @@ public class Main {
             }
 
             File source = general.getSourceDir(args);
-            logger.debug("Source directory is set to {}", source);
+            logger.info("Source directory is set to {}", source);
 
             File[] images = general.getFilesInSource("tiff");
             if(images != null && images.length >= 1){
